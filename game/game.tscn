@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://kq2r54u633e0"]
+
+[ext_resource type="Script" uid="uid://ppc50wj3qsp" path="res://game/game.gd" id="1_4fuuu"]
+[ext_resource type="PackedScene" uid="uid://b14x7urwkpyob" path="res://background/background.tscn" id="2_dxrkv"]
+[ext_resource type="Script" uid="uid://drcsivfrlug5d" path="res://game/car_manager.gd" id="4_u5opy"]
+[ext_resource type="PackedScene" uid="uid://dsek7heoo57j5" path="res://players/player_1.tscn" id="5_dxrkv"]
+[ext_resource type="Texture2D" uid="uid://vbrkr0og24k6" path="res://game/number_0.png" id="6_dakft"]
+[ext_resource type="PackedScene" uid="uid://b26epw88c2rud" path="res://players/player_2.tscn" id="6_u5opy"]
+[ext_resource type="Script" uid="uid://db05agopnusr2" path="res://players/player_2.gd" id="7_y36n6"]
+[ext_resource type="FontFile" uid="uid://b6yltsx7d31vj" path="res://PressStart2P-Regular.ttf" id="8_y36n6"]
+
+[node name="game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4fuuu")
+
+[node name="Background" parent="." instance=ExtResource("2_dxrkv")]
+layout_mode = 1
+
+[node name="car_manager" type="Node2D" parent="."]
+script = ExtResource("4_u5opy")
+
+[node name="player_1_score_digit_0" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(100, 5)
+texture = ExtResource("6_dakft")
+
+[node name="player_1_score_digit_1" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(115, 5)
+texture = ExtResource("6_dakft")
+
+[node name="player_2_score_digit_0" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(206, 5)
+texture = ExtResource("6_dakft")
+
+[node name="player_2_score_digit_1" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(221, 5)
+texture = ExtResource("6_dakft")
+
+[node name="Player_1" parent="." instance=ExtResource("5_dxrkv")]
+position = Vector2(107, 184)
+
+[node name="Player" parent="." instance=ExtResource("6_u5opy")]
+position = Vector2(212, 184)
+script = ExtResource("7_y36n6")
+
+[node name="menu_button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 10.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 50.0
+offset_bottom = 25.0
+theme_override_fonts/font = ExtResource("8_y36n6")
+theme_override_font_sizes/font_size = 8
+text = "<menu"

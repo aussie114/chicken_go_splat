@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8orepxqhe4fh"]
+
+[ext_resource type="PackedScene" uid="uid://b14x7urwkpyob" path="res://background/background.tscn" id="1_j0t7f"]
+[ext_resource type="Script" uid="uid://6x3ky1jnjkac" path="res://menu/menu.gd" id="2_6nwqt"]
+[ext_resource type="FontFile" uid="uid://b6yltsx7d31vj" path="res://PressStart2P-Regular.ttf" id="2_g18jx"]
+
+[sub_resource type="Theme" id="Theme_g18jx"]
+default_font = ExtResource("2_g18jx")
+default_font_size = 8
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_g18jx")
+script = ExtResource("2_6nwqt")
+
+[node name="Background" parent="." instance=ExtResource("1_j0t7f")]
+layout_mode = 1
+
+[node name="menu_text" type="Label" parent="Background"]
+texture_filter = 1
+layout_mode = 1
+offset_left = 84.0
+offset_top = 23.0
+offset_right = 298.0
+offset_bottom = 180.0
+theme_override_constants/line_spacing = 7
+text = "Start
+					Difficulty < medium >
+					Gore      <   on   >"
+
+[node name="cursor" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 23.0
+offset_right = 77.0
+offset_bottom = 31.0
+text = ">"
+
+[node name="start_button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 75.0
+offset_top = 20.0
+offset_right = 164.0
+offset_bottom = 34.0
+
+[node name="diff_button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 75.0
+offset_top = 35.0
+offset_right = 164.0
+offset_bottom = 49.0
+
+[node name="gore_button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 75.0
+offset_top = 50.0
+offset_right = 164.0
+offset_bottom = 64.0

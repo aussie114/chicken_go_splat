@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsek7heoo57j5"]
+
+[ext_resource type="Script" uid="uid://xm6padco8jxj" path="res://players/player_1.gd" id="1_addu3"]
+[ext_resource type="Texture2D" uid="uid://fmkmkfljigi6" path="res://players/walk_frame_0.png" id="2_ef4xs"]
+[ext_resource type="AudioStream" uid="uid://7j6a6lo1a3o6" path="res://players/explosion.ogg" id="3_ojmqp"]
+[ext_resource type="AudioStream" uid="uid://744y3reh7d12" path="res://players/goal.ogg" id="4_eoeyg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwdvq"]
+size = Vector2(14, 8)
+
+[node name="Player" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_addu3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rwdvq")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_ef4xs")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="explosion_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ojmqp")
+
+[node name="goal_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_eoeyg")

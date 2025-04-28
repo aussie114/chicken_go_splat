@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b14x7urwkpyob"]
+
+[ext_resource type="Script" uid="uid://b3u0r0wm58r07" path="res://background/background.gd" id="1_eva80"]
+[ext_resource type="Texture2D" uid="uid://6avgdpddkkpv" path="res://background/background_1.png" id="1_p8qmt"]
+
+[node name="Background" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eva80")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_p8qmt")
+centered = false
