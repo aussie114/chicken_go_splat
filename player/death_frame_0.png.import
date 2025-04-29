@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b56mhqofc3he3"
-path="res://.godot/imported/death_frame_2.png-9744b00b51ca131438537e6a85a1114d.ctex"
+uid="uid://bca2gqqtciqfo"
+path="res://.godot/imported/death_frame_0.png-98e5af25451ab7864ebf65bec6a24791.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://players/player/death_frame_2.png"
-dest_files=["res://.godot/imported/death_frame_2.png-9744b00b51ca131438537e6a85a1114d.ctex"]
+source_file="res://player/death_frame_0.png"
+dest_files=["res://.godot/imported/death_frame_0.png-98e5af25451ab7864ebf65bec6a24791.ctex"]
 
 [params]
 

@@ -11,20 +11,20 @@ var score: int = 0
 var id: int
 var up_key: String
 var down_key: String
-
 var top_box: Rect2i
 var mid_box: Rect2i
 var bot_box: Rect2i
 
+var mouse_position
 @onready var game = get_node("/root/game")
 @onready var sprite: Sprite2D = $sprite
 @onready var sprite_frames: Array[Resource] = [
-	load("res://players/player/walk_frame_0.png"),
-	load("res://players/player/walk_frame_1.png"),
-	load("res://players/player/death_frame_0.png"),
-	load("res://players/player/death_frame_1.png"),
-	load("res://players/player/death_frame_2.png"),
-	load("res://players/player/death_frame_3.png")
+	load("res://player/walk_frame_0.png"),
+	load("res://player/walk_frame_1.png"),
+	load("res://player/death_frame_0.png"),
+	load("res://player/death_frame_1.png"),
+	load("res://player/death_frame_2.png"),
+	load("res://player/death_frame_3.png")
 ]
 @onready var timer: Timer = $Timer
 @onready var explosion_sound = $explosion_sound
@@ -32,63 +32,72 @@ var bot_box: Rect2i
 var tick: float = 0
 
 func _ready() -> void:
+	if   name == "player_1":
+		id = 0
+		up_key = "w"
+		down_key = "s"
+		top_box = Rect2(0,   0, 160,  20)
+		mid_box = Rect2(0,  20, 160, 171)
+		bot_box = Rect2(0, 171, 160, 180)
+	elif name == "player_2":
+		id = 1
+		up_key = "ui_up"
+		down_key = "ui_down"
+		top_box = Rect2(160,   0, 320,  20)
+		mid_box = Rect2(160,  20, 320, 171)
+		bot_box = Rect2(160, 171, 320, 180)
 	connect("area_entered", on_collision)
 	timer.connect("timeout", on_timer_timeout)
-
-func move_up() -> void:
-	sprite.texture = sprite_frames[int(tick) % 2]
-	if acceleration < max_acceleration:
-		acceleration += 1
-
-func move_down() -> void:
-		sprite.texture = sprite_frames[int(tick) % 2]
-		if acceleration > -max_acceleration:
-			acceleration -= 1
-
-func input_handing() -> void:
-
-	if position.y <= 5 or position.y >= 176:
-		acceleration = 0
-		return
-	var mouse_position = get_global_mouse_position()
-	if   Input.is_action_pressed(up_key) \
-	or Input.is_action_pressed("mouse_left") and top_box.has_point(mouse_position)\
-	or Input.is_action_pressed("mouse_left") and mid_box.has_point(mouse_position) and mouse_position.y + 2 < position.y:
-		move_up()
-
-	elif Input.is_action_pressed(down_key) \
-	or Input.is_action_pressed("mouse_left") and mid_box.has_point(mouse_position) and mouse_position.y - 2 > position.y \
-	or Input.is_action_pressed("mouse_left") and bot_box.has_point(mouse_position):
-		move_down()
-
-	else:
-		acceleration = 0
-		sprite.texture = sprite_frames[0]
-
 
 func _process(delta: float) -> void:
 	tick += delta * 8
 
+	# disable movement if dead
 	if dead:
 		return
 
 	input_handing()
+	check_if_goal()
+	check_if_below_screen(delta)
 
+	# move player
 	position.y -= acceleration * speed * delta
 
+func input_handing() -> void:
+	# if out of bounds
+	if position.y <= 5 or position.y >= 176:
+		acceleration = 0
+		return
+
+	mouse_position = get_global_mouse_position()
+	if   Input.is_action_pressed(up_key) \
+	or Input.is_action_pressed("mouse_left") and top_box.has_point(mouse_position)\
+	or Input.is_action_pressed("mouse_left") and mid_box.has_point(mouse_position) and mouse_position.y + 2 < position.y:
+		sprite.texture = sprite_frames[int(tick) % 2]
+		if acceleration < max_acceleration:
+			acceleration += 1
+	elif Input.is_action_pressed(down_key) \
+	or Input.is_action_pressed("mouse_left") and mid_box.has_point(mouse_position) and mouse_position.y - 2 > position.y \
+	or Input.is_action_pressed("mouse_left") and bot_box.has_point(mouse_position):
+		sprite.texture = sprite_frames[int(tick) % 2]
+		if acceleration > -max_acceleration:
+			acceleration -= 1
+	else:
+		acceleration = 0
+		sprite.texture = sprite_frames[0]
+
+func check_if_goal():
 	if position.y <= 14:
-		on_goal()
-
-	if position.y >= 176:
-		position.y += -1 * speed * delta
-
-func on_goal():
 		if !goal_sound.is_playing():
 			goal_sound.play()
 		if score < 99:
 			score += 1
 		game.update_score(id, score)
 		position.y = 184
+
+func check_if_below_screen(delta):
+	if position.y >= 176:
+		position.y += -1 * speed * delta
 
 func on_collision(_body):
 	if dead:
