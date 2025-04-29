@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://kq2r54u633e0"]
+[gd_scene load_steps=7 format=3 uid="uid://kq2r54u633e0"]
 
 [ext_resource type="Script" uid="uid://ppc50wj3qsp" path="res://game/game.gd" id="1_4fuuu"]
 [ext_resource type="PackedScene" uid="uid://b14x7urwkpyob" path="res://background/background.tscn" id="2_dxrkv"]
 [ext_resource type="Texture2D" uid="uid://vbrkr0og24k6" path="res://game/number_0.png" id="6_dakft"]
 [ext_resource type="PackedScene" uid="uid://bwbwo4ouhvyb3" path="res://car/car.tscn" id="6_u5opy"]
-[ext_resource type="Script" uid="uid://bjuy3mrwehcqy" path="res://car/car.gd" id="7_l8g03"]
 [ext_resource type="PackedScene" uid="uid://dsek7heoo57j5" path="res://player/player.tscn" id="7_y36n6"]
 [ext_resource type="FontFile" uid="uid://b6yltsx7d31vj" path="res://PressStart2P-Regular.ttf" id="8_y36n6"]
 
@@ -78,23 +77,66 @@ bot_box = Rect2i(160, 171, 160, 9)
 [node name="cars" type="Node" parent="."]
 
 [node name="car_0" parent="cars" instance=ExtResource("6_u5opy")]
+modulate = Color(0.611765, 0.12549, 0.12549, 1)
 position = Vector2(311, 27)
-script = ExtResource("7_l8g03")
+direction = -1
 speed = 100
 
 [node name="car_1" parent="cars" instance=ExtResource("6_u5opy")]
+modulate = Color(0.705882, 0.894118, 0.564706, 1)
 position = Vector2(311, 42)
-script = ExtResource("7_l8g03")
-speed = 200
+direction = -1
+speed = 150
 
 [node name="car_2" parent="cars" instance=ExtResource("6_u5opy")]
+modulate = Color(0.392157, 0.392157, 0.0627451, 1)
 position = Vector2(311, 57)
-script = ExtResource("7_l8g03")
+direction = -1
+speed = 200
 
 [node name="car_3" parent="cars" instance=ExtResource("6_u5opy")]
+modulate = Color(0.878431, 0.533333, 0.533333, 1)
 position = Vector2(311, 72)
-script = ExtResource("7_l8g03")
+direction = -1
+speed = 250
 
 [node name="car_4" parent="cars" instance=ExtResource("6_u5opy")]
+modulate = Color(0.109804, 0.12549, 0.611765, 1)
 position = Vector2(311, 87)
-script = ExtResource("7_l8g03")
+direction = -1
+speed = 300
+
+[node name="car_5" parent="cars" instance=ExtResource("6_u5opy")]
+modulate = Color(0.596078, 0.360784, 0.156863, 1)
+position = Vector2(9, 104)
+scale = Vector2(-1, -1)
+direction = 1
+speed = 300
+
+[node name="car_6" parent="cars" instance=ExtResource("6_u5opy")]
+modulate = Color(0.407843, 0.454902, 0.815686, 1)
+position = Vector2(9, 119)
+scale = Vector2(-1, -1)
+direction = 1
+speed = 250
+
+[node name="car_7" parent="cars" instance=ExtResource("6_u5opy")]
+modulate = Color(0.690196, 0.235294, 0.235294, 1)
+position = Vector2(9, 134)
+scale = Vector2(-1, -1)
+direction = 1
+speed = 200
+
+[node name="car_8" parent="cars" instance=ExtResource("6_u5opy")]
+modulate = Color(0.517647, 0.705882, 0.407843, 1)
+position = Vector2(9, 149)
+scale = Vector2(-1, -1)
+direction = 1
+speed = 150
+
+[node name="car_9" parent="cars" instance=ExtResource("6_u5opy")]
+modulate = Color(0.815686, 0.815686, 0.313726, 1)
+position = Vector2(9, 164)
+scale = Vector2(-1, -1)
+direction = 1
+speed = 100
