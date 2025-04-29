@@ -8,12 +8,12 @@ var dead: bool = false
 var score: int = 0
 
 # unique vars
-var id: int
-var up_key: String
-var down_key: String
-var top_box: Rect2i
-var mid_box: Rect2i
-var bot_box: Rect2i
+@export var id: int
+@export var up_key: String
+@export var down_key: String
+@export var top_box: Rect2i
+@export var mid_box: Rect2i
+@export var bot_box: Rect2i
 
 var mouse_position
 @onready var game = get_node("/root/game")
@@ -32,20 +32,6 @@ var mouse_position
 var tick: float = 0
 
 func _ready() -> void:
-	if   name == "player_1":
-		id = 0
-		up_key = "w"
-		down_key = "s"
-		top_box = Rect2(0,   0, 160,  20)
-		mid_box = Rect2(0,  20, 160, 171)
-		bot_box = Rect2(0, 171, 160, 180)
-	elif name == "player_2":
-		id = 1
-		up_key = "ui_up"
-		down_key = "ui_down"
-		top_box = Rect2(160,   0, 320,  20)
-		mid_box = Rect2(160,  20, 320, 171)
-		bot_box = Rect2(160, 171, 320, 180)
 	connect("area_entered", on_collision)
 	timer.connect("timeout", on_timer_timeout)
 

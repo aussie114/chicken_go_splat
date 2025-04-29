@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://kq2r54u633e0"]
+[gd_scene load_steps=8 format=3 uid="uid://kq2r54u633e0"]
 
 [ext_resource type="Script" uid="uid://ppc50wj3qsp" path="res://game/game.gd" id="1_4fuuu"]
 [ext_resource type="PackedScene" uid="uid://b14x7urwkpyob" path="res://background/background.tscn" id="2_dxrkv"]
-[ext_resource type="Script" uid="uid://drcsivfrlug5d" path="res://game/car_manager.gd" id="4_u5opy"]
 [ext_resource type="Texture2D" uid="uid://vbrkr0og24k6" path="res://game/number_0.png" id="6_dakft"]
+[ext_resource type="PackedScene" uid="uid://bwbwo4ouhvyb3" path="res://car/car.tscn" id="6_u5opy"]
+[ext_resource type="Script" uid="uid://bjuy3mrwehcqy" path="res://car/car.gd" id="7_l8g03"]
 [ext_resource type="PackedScene" uid="uid://dsek7heoo57j5" path="res://player/player.tscn" id="7_y36n6"]
 [ext_resource type="FontFile" uid="uid://b6yltsx7d31vj" path="res://PressStart2P-Regular.ttf" id="8_y36n6"]
 
@@ -18,9 +19,6 @@ script = ExtResource("1_4fuuu")
 
 [node name="Background" parent="." instance=ExtResource("2_dxrkv")]
 layout_mode = 1
-
-[node name="car_manager" type="Node2D" parent="."]
-script = ExtResource("4_u5opy")
 
 [node name="player_1_score_digit_0" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -58,8 +56,45 @@ theme_override_fonts/font = ExtResource("8_y36n6")
 theme_override_font_sizes/font_size = 8
 text = "<menu"
 
-[node name="player_1" parent="." instance=ExtResource("7_y36n6")]
-position = Vector2(106, 184)
+[node name="players" type="Node" parent="."]
 
-[node name="player_2" parent="." instance=ExtResource("7_y36n6")]
+[node name="player_1" parent="players" instance=ExtResource("7_y36n6")]
+position = Vector2(106, 184)
+up_key = "w"
+down_key = "s"
+top_box = Rect2i(0, 0, 160, 20)
+mid_box = Rect2i(0, 20, 160, 151)
+bot_box = Rect2i(0, 171, 160, 9)
+
+[node name="player_2" parent="players" instance=ExtResource("7_y36n6")]
 position = Vector2(212, 184)
+id = 1
+up_key = "ui_up"
+down_key = "ui_down"
+top_box = Rect2i(160, 0, 160, 20)
+mid_box = Rect2i(160, 20, 160, 151)
+bot_box = Rect2i(160, 171, 160, 9)
+
+[node name="cars" type="Node" parent="."]
+
+[node name="car_0" parent="cars" instance=ExtResource("6_u5opy")]
+position = Vector2(311, 27)
+script = ExtResource("7_l8g03")
+speed = 100
+
+[node name="car_1" parent="cars" instance=ExtResource("6_u5opy")]
+position = Vector2(311, 42)
+script = ExtResource("7_l8g03")
+speed = 200
+
+[node name="car_2" parent="cars" instance=ExtResource("6_u5opy")]
+position = Vector2(311, 57)
+script = ExtResource("7_l8g03")
+
+[node name="car_3" parent="cars" instance=ExtResource("6_u5opy")]
+position = Vector2(311, 72)
+script = ExtResource("7_l8g03")
+
+[node name="car_4" parent="cars" instance=ExtResource("6_u5opy")]
+position = Vector2(311, 87)
+script = ExtResource("7_l8g03")
