@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://dsek7heoo57j5"]
 
-[ext_resource type="Script" uid="uid://xm6padco8jxj" path="res://players/player_1.gd" id="1_addu3"]
-[ext_resource type="Texture2D" uid="uid://fmkmkfljigi6" path="res://players/walk_frame_0.png" id="2_ef4xs"]
-[ext_resource type="AudioStream" uid="uid://7j6a6lo1a3o6" path="res://players/explosion.ogg" id="3_ojmqp"]
-[ext_resource type="AudioStream" uid="uid://744y3reh7d12" path="res://players/goal.ogg" id="4_eoeyg"]
+[ext_resource type="Script" uid="uid://xm6padco8jxj" path="res://players/player/player.gd" id="1_addu3"]
+[ext_resource type="Texture2D" uid="uid://fmkmkfljigi6" path="res://players/player/walk_frame_0.png" id="2_ef4xs"]
+[ext_resource type="AudioStream" uid="uid://7j6a6lo1a3o6" path="res://players/player/explosion.ogg" id="3_ojmqp"]
+[ext_resource type="AudioStream" uid="uid://744y3reh7d12" path="res://players/player/goal.ogg" id="4_eoeyg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwdvq"]
 size = Vector2(14, 8)

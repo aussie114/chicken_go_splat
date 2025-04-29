@@ -1,20 +1,30 @@
 extends Area2D
 
+# universal vars
 var speed: int = 15
 var acceleration: int = 0
 var max_acceleration: int = 5
 var dead: bool = false
 var score: int = 0
 
+# unique vars
+var id: int
+var up_key: String
+var down_key: String
+
+var top_box: Rect2i
+var mid_box: Rect2i
+var bot_box: Rect2i
+
 @onready var game = get_node("/root/game")
 @onready var sprite: Sprite2D = $sprite
 @onready var sprite_frames: Array[Resource] = [
-	load("res://players/walk_frame_0.png"),
-	load("res://players/walk_frame_1.png"),
-	load("res://players/death_frame_0.png"),
-	load("res://players/death_frame_1.png"),
-	load("res://players/death_frame_2.png"),
-	load("res://players/death_frame_3.png")
+	load("res://players/player/walk_frame_0.png"),
+	load("res://players/player/walk_frame_1.png"),
+	load("res://players/player/death_frame_0.png"),
+	load("res://players/player/death_frame_1.png"),
+	load("res://players/player/death_frame_2.png"),
+	load("res://players/player/death_frame_3.png")
 ]
 @onready var timer: Timer = $Timer
 @onready var explosion_sound = $explosion_sound
@@ -41,14 +51,14 @@ func input_handing() -> void:
 		acceleration = 0
 		return
 	var mouse_position = get_global_mouse_position()
-	if   Input.is_action_pressed("ui_up") \
-	or Input.is_action_pressed("mouse_left") and mouse_position.y < 20 and mouse_position.x > 160 \
-	or Input.is_action_pressed("mouse_left") and position.y-5 > mouse_position.y and mouse_position.x > 160:
+	if   Input.is_action_pressed(up_key) \
+	or Input.is_action_pressed("mouse_left") and top_box.has_point(mouse_position)\
+	or Input.is_action_pressed("mouse_left") and mid_box.has_point(mouse_position) and mouse_position.y + 2 < position.y:
 		move_up()
 
-	elif Input.is_action_pressed("ui_down") \
-	or Input.is_action_pressed("mouse_left") and mouse_position.y > 171 and mouse_position.x > 160 \
-	or Input.is_action_pressed("mouse_left") and position.y+5 < mouse_position.y and mouse_position.x > 160:
+	elif Input.is_action_pressed(down_key) \
+	or Input.is_action_pressed("mouse_left") and mid_box.has_point(mouse_position) and mouse_position.y - 2 > position.y \
+	or Input.is_action_pressed("mouse_left") and bot_box.has_point(mouse_position):
 		move_down()
 
 	else:
@@ -59,12 +69,8 @@ func input_handing() -> void:
 func _process(delta: float) -> void:
 	tick += delta * 8
 
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().change_scene_to_file("res://menu/menu.tscn")
-
 	if dead:
 		return
-
 
 	input_handing()
 
@@ -81,7 +87,7 @@ func on_goal():
 			goal_sound.play()
 		if score < 99:
 			score += 1
-		game.update_score(1, score)
+		game.update_score(id, score)
 		position.y = 184
 
 func on_collision(_body):

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://srqjelfyxpn"
-path="res://.godot/imported/walk_frame_1.png-ab02ec9b25daafc5a802c7acc68f6d90.ctex"
+uid="uid://dbut1aajxyxsn"
+path="res://.godot/imported/death_frame_3.png-c004bba9a3d5a577e37dc2bc1f028dca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://players/walk_frame_1.png"
-dest_files=["res://.godot/imported/walk_frame_1.png-ab02ec9b25daafc5a802c7acc68f6d90.ctex"]
+source_file="res://players/player/death_frame_3.png"
+dest_files=["res://.godot/imported/death_frame_3.png-c004bba9a3d5a577e37dc2bc1f028dca.ctex"]
 
 [params]
 
